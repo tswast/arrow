@@ -253,7 +253,7 @@ table Date {
   unit: DateUnit = MILLISECOND;
 }
 
-enum TimeUnit: short { SECOND, MILLISECOND, MICROSECOND, NANOSECOND }
+enum TimeUnit: short { SECOND, MILLISECOND, MICROSECOND, NANOSECOND, PICOSECOND }
 
 /// Time is either a 32-bit or 64-bit signed integer type representing an
 /// elapsed time since midnight, stored in either of four units: seconds,
@@ -393,6 +393,10 @@ table Timestamp {
   /// Whether a timezone string is present indicates different semantics about
   /// the data (see above).
   timezone: string;
+
+  /// Number of bits per value. The accepted widths are 64 and 128.
+  /// We use bitWidth for consistency with Int::bitWidth.
+  bitWidth: int = 64;
 }
 
 enum IntervalUnit: short { YEAR_MONTH, DAY_TIME, MONTH_DAY_NANO}
@@ -433,6 +437,10 @@ table Interval {
 //  always represented as an 8-byte integer.
 table Duration {
   unit: TimeUnit = MILLISECOND;
+
+  /// Number of bits per value. The accepted widths are 64 and 128.
+  /// We use bitWidth for consistency with Int::bitWidth.
+  bitWidth: int = 64;
 }
 
 /// ----------------------------------------------------------------------
